@@ -1,8 +1,12 @@
 /*
  * Create a list that holds all of your cards
  */
-
-
+let deckOfCards = ['fa-diamond','fa-diamond','fa-paper-plane-o','fa-paper-plane-o',
+              'fa-anchor','fa-anchor','fa-bolt','fa-bolt','fa-cube','fa-cube',
+              'fa-leaf','fa-leaf','fa-bicycle','fa-bicycle','fa-bomb']
+function printCardHTML(card) {
+  return '<li class="card"><i class="${card}"></i></li>'
+}
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -24,8 +28,19 @@ function shuffle(array) {
 
     return array;
 }
+  function createDeck() {
+    let deckDOM = document.querySelector('.deck');
+  }
+// shuffleDeck();
 
-
+  let temp = '';
+  let i = 0;
+  let len = deckOfCards.length;
+  for(; i < len; i++) {
+    temp = temp + printCardHTML(deckOfCards[i]);
+  }
+  deckDOM.innerHTML = temp;
+}
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -36,3 +51,17 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+let allCards = document.querySelectorAll('.card');
+let openCards = [];
+
+//1. click cards
+//2. if clicked, rename class to '.card .show'? -> .className ='card show'
+//3. compare last two clicked cards. if their type (card name) is the same
+  //in matchedCards and change .className = 'card matched'
+
+let clickedCard = deckOfCards;
+
+document.querySelectorAll('li.card').forEach(funtion(card){
+  card.addEventListener('click',)
+})
