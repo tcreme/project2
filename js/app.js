@@ -68,12 +68,29 @@ function clickCards(){
   let openCards = [];
 
   // Loop through all classes labeled 'card' and add a click event handler to each
-  allCards.forEach(function(element, index){
-    element.addEventListener("click", function(){
-      console.log("\nYou clicked " + index);
+  allCards.forEach(function(card){
+    card.addEventListener("click", function(){
+        openCards.push(card);
+        card.classList.add('open','show');
+        console.log('Open Cards:', openCards.length);
+
+      if(openCards.length == 2) {
+        setTimeout(function() {
+          openCards.forEach(function(card) {
+            card.classList.remove('open','show');
+          });
+            openCards = [];
+        },750);
+      }
     });
   });
 }
 
+//matchedCards
+
 createDeck();
 clickCards();
+
+function matchedCards(){
+
+}
