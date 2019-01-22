@@ -80,7 +80,7 @@ function clickCards(){
             card.classList.remove('open','show');
           });
             openCards = [];
-        },750);
+        },475);
       }
     });
   });
