@@ -1,9 +1,9 @@
 /*
  * Create a list that holds all of your cards
  */
-let deckOfCards = ['fa-diamond','fa-diamond','fa-paper-plane-o','fa-paper-plane-o',
-              'fa-anchor','fa-anchor','fa-bolt','fa-bolt','fa-cube','fa-cube',
-              'fa-leaf','fa-leaf','fa-bicycle','fa-bicycle','fa-bomb','fa-bomb'];
+let deckOfCards = ['fa fa-diamond','fa fa-diamond','fa fa-paper-plane-o','fa fa-paper-plane-o',
+              'fa fa-anchor','fa fa-anchor','fa fa-bolt','fa fa-bolt','fa fa-cube','fa fa-cube',
+              'fa fa-leaf','fa fa-leaf','fa fa-bicycle','fa fa-bicycle','fa fa-bomb','fa fa-bomb'];
 
 function printCardHTML(card) {
   return `<li class="card"><i class="${card}"></i></li>`
@@ -59,12 +59,23 @@ function createDeck() {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+ createDeck();
+ //clickCards();
+
  //1. click cards
  //2. if clicked, rename class to '.card .show'? -> .className ='card show'
  //3. compare last two clicked cards. if their type (card name) is the same
    //in matchedCards and change .className = 'card matched'
-function clickCards(){
+//function clickCards(){
   let allCards = document.querySelectorAll('.card');
+  let i, cardName;
+  for(i=0; i < allCards.length; i++){
+    allCards[i].setAttribute(cardName, deckOfCards[i]);
+  }
+
+  // To Read the card name use
+  // allCards[i].getAttribute(cardName);
+
   let openCards = [];
 
   // Loop through all classes labeled 'card' and add a click event handler to each
@@ -72,7 +83,7 @@ function clickCards(){
     card.addEventListener("click", function(){
         openCards.push(card);
         card.classList.add('open','show');
-        console.log('Open Cards:', openCards.length);
+        console.log('Selected:', card.getAttribute(cardName));
 
       if(openCards.length == 2) {
         setTimeout(function() {
@@ -84,12 +95,11 @@ function clickCards(){
       }
     });
   });
-}
+//}
 
 //matchedCards
 
-createDeck();
-clickCards();
+
 
 function matchedCards(){
 
