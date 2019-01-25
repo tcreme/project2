@@ -69,38 +69,65 @@ function createDeck() {
 //function clickCards(){
   let allCards = document.querySelectorAll('.card');
   let i, cardName;
-  for(i=0; i < allCards.length; i++){
+  for (i = 0; i < allCards.length; i++) {
     allCards[i].setAttribute(cardName, deckOfCards[i]);
   }
-
   // To Read the card name use
   // allCards[i].getAttribute(cardName);
-
   let openCards = [];
+  let matchedCards = [];
 
-  // Loop through all classes labeled 'card' and add a click event handler to each
-  allCards.forEach(function(card){
-    card.addEventListener("click", function(){
-        openCards.push(card);
-        card.classList.add('open','show');
-        console.log('Selected:', card.getAttribute(cardName));
 
-      if(openCards.length == 2) {
-        setTimeout(function() {
-          openCards.forEach(function(card) {
-            card.classList.remove('open','show');
-          });
+
+  // Add an event listener to each element of allCards
+  // The function in forEach takes two parameters: the refernce to the value
+  // stored in allCards[i] and the index i
+  allCards.forEach(function(htmlText, arrayIndex){
+    // The value sent from allCards[i] has an event listener to it that is
+    // activated by clikcing. Clicking the card represented by htmlText will
+    // write the index value to openCards, which will later be used to compare
+    // if two selected cards are a match.
+    console.log("forEach method called.")
+
+    allCards[arrayIndex].addEventListener("click", function(){
+      // Make sure the same card isn't being clicked twice
+      if(arrayIndex == openCards[0]) return;
+      console.log("arrayIndex = ", arrayIndex);
+
+      // Add array number for card that has been clicked in openCards
+      openCards.push(arrayIndex);
+
+      // Check if we have too many cards open (timeout isn't over)
+      if(openCards.length > 2) return;
+
+      allCards[arrayIndex].classList.add('open', 'show');
+
+      // Check the size of openCards to determine if enough cards have between
+      // clicked to compare cards.
+      if(openCards.length >= 2){
+        // If two cards are open, compare their values. If they're a match,
+        // update the CSS coresponding to their class 'match' and 'show'
+        if(allCards[openCards[0]].firstChild.className == allCards[openCards[1]].firstChild.className){
+          // Match found
+          console.log("We have a match!");
+          allCards[openCards[0]].classList.remove('open');
+          allCards[openCards[1]].classList.remove('open');
+          allCards[openCards[0]].classList.add('match');
+          allCards[openCards[1]].classList.add('match');
+
+          // Clear the openCards array
+          openCards = [];
+        }else{
+          // No match found. Reset the cards
+          setTimeout(function() {
+            allCards[openCards[0]].classList.remove('open','show');
+            allCards[openCards[1]].classList.remove('open','show');
+
+            // Clear the openCards array
             openCards = [];
-        },475);
+          },475);
+
+        }
       }
-    });
+    })
   });
-//}
-
-//matchedCards
-
-
-
-function matchedCards(){
-
-}
