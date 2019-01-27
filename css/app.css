@@ -113,3 +113,9 @@ h1 {
     float: right;
     cursor: pointer;
 }
+.won {
+  color: rgb(139,0,139);
+  font-family: cursive;
+  font-style: italic;
+  font-size: 30px;
+}

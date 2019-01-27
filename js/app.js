@@ -148,8 +148,9 @@ function setTimer() {
 
     // Have all cards been matched?
     if(matchedCards == 8) {
+      congrats();
       clearInterval(timer);
-      
+
     }
   }, 1000);
 }
@@ -186,7 +187,6 @@ let starsDOM = document.querySelector('.stars');
 function restartDeck() {
   let restartDOM = document.querySelector('.restart');
   restartDOM.addEventListener('click', function(){
-    console.log("Resart Button Cicked.")
     createDeck();
     matchedCards = 0;
     moveCounter = 0;
@@ -203,6 +203,15 @@ function initiateTimer() {
   gameTimerDOM.innerHTML = `Timer: 0 seconds`;
 }
 
+
+function congrats() {
+  let wonDOM = document.querySelector('.won');
+  if(matchedCards == 8) {
+    wonDOM.innerHTML = `CONGRATULATIONS, YOU WON!!!`;
+  }
+}
+
+
 // Start Functions
 createDeck();
 setMoves();
@@ -210,3 +219,4 @@ setStars();
 initiateTimer();
 restartDeck();
 clickCards();
+congrats();
