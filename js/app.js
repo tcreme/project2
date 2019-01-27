@@ -224,7 +224,7 @@ function congrats() {
     modalContentDOM.innerHTML =
       `<span class = "close">&times;</span>
       <p>Congratulations, you won!! Your time was ${time} seconds and you finished with
-      ${starCounter} stars!</p> <button class="playAgainBtn"> Play Again </button>`;
+      ${starCounter} star(s)!</p> <button class="playAgainBtn"> Play Again </button>`;
 
     let closeDOM = document.querySelector('.close');
     let playAgainBtn = document.querySelector('.playAgainBtn');

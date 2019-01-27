@@ -131,7 +131,7 @@ h1 {
 
 /* Modal Content/Box */
 .modalContent {
-  background-color: #fefefe;
+  background-color: rgb(255,255,255);
   border-radius: 15px;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -142,12 +142,12 @@ h1 {
 
 /* The Close Button */
 .close {
-  color: #000000;
+  color: rgb(0,0,0);
   float: right;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: bold;
 }
 /* play again button */
 .playAgainBtn {
-  display: block;
+  float: left;
 }
