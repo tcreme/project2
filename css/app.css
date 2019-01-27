@@ -33,6 +33,12 @@ h1 {
     font-weight: 300;
 }
 
+.gameTimer {
+  display: flex;
+  float: right;
+  color: rgb(255, 0, 0);
+  margin-right: 40px;
+}
 /*
  * Styles for the deck of cards
  */

@@ -1,15 +1,19 @@
 /*
  * Create a list that holds all of your cards
  */
+//Global variables
 let deckOfCards = ['fa fa-diamond','fa fa-diamond','fa fa-paper-plane-o','fa fa-paper-plane-o',
               'fa fa-anchor','fa fa-anchor','fa fa-bolt','fa fa-bolt','fa fa-cube','fa fa-cube',
               'fa fa-leaf','fa fa-leaf','fa fa-bicycle','fa fa-bicycle','fa fa-bomb','fa fa-bomb'];
+let matchedCards = 0;
+let moveCounter = 0;
+let time = 0;
+let timer;
+let gameTimerDOM = document.querySelector('.gameTimer');
 
 function printCardHTML(card) {
   return `<li class="card"><i class="${card}"></i></li>`
 }
-
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -28,14 +32,11 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
-
+//links deck to deck class then calls shuffle function
 function createDeck() {
     let deckDOM = document.querySelector('.deck');
-
-// shuffleDeck();
 
     shuffle(deckOfCards);
 
@@ -59,14 +60,8 @@ function createDeck() {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
- createDeck();
- //clickCards();
 
- //1. click cards
- //2. if clicked, rename class to '.card .show'? -> .className ='card show'
- //3. compare last two clicked cards. if their type (card name) is the same
-   //in matchedCards and change .className = 'card matched'
-//function clickCards(){
+function clickCards(){
   let allCards = document.querySelectorAll('.card');
   let i, cardName;
   for (i = 0; i < allCards.length; i++) {
@@ -75,9 +70,7 @@ function createDeck() {
   // To Read the card name use
   // allCards[i].getAttribute(cardName);
   let openCards = [];
-  let matchedCards = [];
-
-
+  let initialClick = 0;
 
   // Add an event listener to each element of allCards
   // The function in forEach takes two parameters: the refernce to the value
@@ -89,7 +82,14 @@ function createDeck() {
     // if two selected cards are a match.
     console.log("forEach method called.")
 
-    allCards[arrayIndex].addEventListener("click", function(){
+    allCards[arrayIndex].addEventListener("click", function() {
+      // If its the first card click, activate timer functionality
+
+      if (initialClick == 0) {
+        initialClick = 1;
+        setTimer();
+      }
+
       // Make sure the same card isn't being clicked twice
       if(arrayIndex == openCards[0]) return;
       console.log("arrayIndex = ", arrayIndex);
@@ -104,20 +104,27 @@ function createDeck() {
 
       // Check the size of openCards to determine if enough cards have between
       // clicked to compare cards.
-      if(openCards.length >= 2){
+      if(openCards.length >= 2) {
+        moveCounter++;
+        setMoves();
+        setStars();
+
         // If two cards are open, compare their values. If they're a match,
         // update the CSS coresponding to their class 'match' and 'show'
-        if(allCards[openCards[0]].firstChild.className == allCards[openCards[1]].firstChild.className){
+        if(allCards[openCards[0]].firstChild.className == allCards[openCards[1]].firstChild.className) {
+
           // Match found
-          console.log("We have a match!");
+
           allCards[openCards[0]].classList.remove('open');
           allCards[openCards[1]].classList.remove('open');
           allCards[openCards[0]].classList.add('match');
           allCards[openCards[1]].classList.add('match');
+          // add to matimetchedCards for winning the game
+          matchedCards++;
 
           // Clear the openCards array
           openCards = [];
-        }else{
+        } else {
           // No match found. Reset the cards
           setTimeout(function() {
             allCards[openCards[0]].classList.remove('open','show');
@@ -126,8 +133,80 @@ function createDeck() {
             // Clear the openCards array
             openCards = [];
           },475);
-
         }
       }
     })
   });
+}
+
+
+// The start of players counter when two cards are clicked
+function setTimer() {
+  timer = setInterval(function() {
+    time++;
+    gameTimerDOM.innerHTML = `Timer: ${time} seconds`;
+
+    // Have all cards been matched?
+    if(matchedCards == 8) {
+      clearInterval(timer);
+      
+    }
+  }, 1000);
+}
+
+
+// Links moves class to the increment of moves in clicked cards function
+function setMoves() {
+let movesDOM = document.querySelector('.moves');
+  if (moveCounter == 1) {
+    movesDOM.innerHTML = `${moveCounter} Move`;
+  } else {
+    movesDOM.innerHTML = `${moveCounter} Moves`;
+  }
+}
+
+// decreases the amount of stars depending on moveCounter
+function setStars() {
+let starsDOM = document.querySelector('.stars');
+  if (moveCounter == 0) {
+    starsDOM.innerHTML = `<li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>`;
+  } else if (moveCounter == 14) {
+    starsDOM.innerHTML = `<li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>`;
+  } else if (moveCounter == 22) {
+    starsDOM.innerHTML = `<li><i class="fa fa-star"></i></li>`;
+  } else if (moveCounter == 30) {
+    starsDOM.innerHTML = ``;
+  }
+}
+
+//refreshes the game
+function restartDeck() {
+  let restartDOM = document.querySelector('.restart');
+  restartDOM.addEventListener('click', function(){
+    console.log("Resart Button Cicked.")
+    createDeck();
+    matchedCards = 0;
+    moveCounter = 0;
+    setMoves();
+    setStars();
+    clearInterval(timer);
+    time = 0;
+    initiateTimer();
+    clickCards();
+  })
+}
+
+function initiateTimer() {
+  gameTimerDOM.innerHTML = `Timer: 0 seconds`;
+}
+
+// Start Functions
+createDeck();
+setMoves();
+setStars();
+initiateTimer();
+restartDeck();
+clickCards();
