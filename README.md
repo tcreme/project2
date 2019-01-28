@@ -32,7 +32,7 @@ This repository is the starter code for _all_ Udacity students. Therefore, we mo
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+Shuffle function from http://stackoverflow.com/a/2450976
 
 ## Author
 
