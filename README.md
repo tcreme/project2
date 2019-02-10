@@ -1,16 +1,21 @@
 # Memory Game Project
 
-Memory Game Project tests the players ability to remember patterns by attempting to match pairs of cards. While attempting to find the pairs, the amount of moves and time it takes them to find all the pairs is recorded.
+Memory Game Project tests a players ability to remember patterns by attempting to match pairs of cards. While attempting to find the pairs, the amount of moves and time it takes them to find all the pairs is recorded.
 
 ## Table of Contents
 
+* [Project Preview](#projectPreview)
+* [Run Game](#runGame)
 * [Instructions](#instructions)
+* [Dependencies](#dependencies)
 * [Contributing](#contributing)
 * [Author](#author)
 
-## Instructions
+## Run Game
 
-Game does not require any additional dependencies.
+Click on the green "Clone or Download" button. To clone the project, select "Open in Desktop". To download the game folder, select "Download ZIP". If game was cloned, to view the game in Atom IDE select repository tab and click "open in Atom". If "Download ZIP" was selected, go to the download location and open the folder using desired IDE. To view and play game open the index file, the file will open up in the browser and is playable.
+
+## Instructions
 
 When first card is clicked, a timer starts.
 
@@ -25,6 +30,13 @@ Once all cards are matched a congratulatory pop up window will congratulate the 
 If interested in playing again, there is a button provided that closes pop up window and resets the deck.
 
 If there is no interest in playing again simply use the 'X' close button located on the top right pop up window and close the page.
+
+## Dependencies
+
+https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css
+https://fonts.googleapis.com/css?family=Coda
+
+Were used for card, reset and star icons.
 
 ## Contributing
 
