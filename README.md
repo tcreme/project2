@@ -33,8 +33,8 @@ If there is no interest in playing again simply use the 'X' close button located
 
 ## Dependencies
 
-https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css
-https://fonts.googleapis.com/css?family=Coda
+* [https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css](#awesomefonts)
+* [https://fonts.googleapis.com/css?family=Coda](#family)
 
 Were used for card, reset and star icons.
 
